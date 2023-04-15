@@ -23,14 +23,14 @@ namespace WebApp_Project.Controllers
             return View();
         }
         [HttpPost]
-        // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult CreateUser(User obj)
         {
             _db.Users.Add(obj);
             _db.SaveChanges();
-            /* return RedirectToAction("Index");*/
+            return RedirectToAction("Index");
             //return View(obj);
-            return View();
+            /* return View();*/
         }
     }
 }
