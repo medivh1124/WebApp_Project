@@ -32,5 +32,8 @@ namespace WebApp_Project.Controllers
             //return View(obj);
             /* return View();*/
         }
-    }
+        public IActionResult Sign_in() 
+        { 
+            return View("~/Views/Home/Index.cshtml"); }
+        }
 }
