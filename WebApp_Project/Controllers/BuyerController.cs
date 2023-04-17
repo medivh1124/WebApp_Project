@@ -14,22 +14,46 @@ namespace WebApp_Project.Controllers
             this.dbContext = dbContext;
         }
 
-        public IActionResult Index(Order obj)
+        public IActionResult Index()
         {
-            /*ชี้ไปที่ ตาราง order : column BuyerId ที่เป็น null*/
-            var a = dbContext.Orders.Where(order => order.BuyerId == null);
-            var buyerId = HttpContext.Session.GetInt32("_CurrentUserId");
-
+            /*var a = dbContext.Orders.Where(order => order.BuyerId == null);*/
 
             return View();
         }
 
-        /*public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(Order obj) 
         {
-            var a = dbContext.Orders.Where(order => order.BuyerId == null);
-            
             return View();
+        }
+
+        /*public IActionResult Index(Order obj)
+        {
+            *//*ชี้ไปที่ ตาราง order: column BuyerId ที่เป็น null*//*
+            var a = dbContext.Orders.Where(order => order.BuyerId == null);
+            var buyerId = HttpContext.Session.GetInt32("_CurrentUserId");
+            obj.BuyerId = buyerId;
+
+
+           
+            return Content("A");
+
         }*/
+
+
+
+    public IActionResult PostOrder()
+        {
+            List<OrderDetail> details = new();
+            List<Order> allOrder = dbContext.Orders.ToList();
+            foreach (Order order in allOrder)
+            {
+                var rider = dbContext.Users.Find(order.RiderId);
+                var detail = new OrderDetail(order, rider!);
+                details.Add(detail);
+            }
+            return View(details);
+        }
 
         public IActionResult YourOrder()
         {
@@ -44,5 +68,7 @@ namespace WebApp_Project.Controllers
             return View(details);
         }
 
+
     }
+
 }

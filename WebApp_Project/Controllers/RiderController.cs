@@ -34,10 +34,11 @@ namespace WebApp_Project.Controllers
                 _db.Orders.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("PostOrder");
+                /*  return View();*/
             }
         }
 
-        public IActionResult PostOrder() 
+ /*       public IActionResult PostOrder()
         {
             List<OrderDetail> details = new();
             List<Order> allOrder = _db.Orders.ToList();
@@ -49,7 +50,7 @@ namespace WebApp_Project.Controllers
             }
             return View(details);
         }
-
+*/
 
 
     }

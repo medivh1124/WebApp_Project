@@ -1,16 +1,16 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Index ของ Buyer</h1>
 
-<form method="post" asp-controller="Rider" asp-action="PostOrder">
-    Menu: <input type="text" name="Menu" />
-    Count: <input type="text" name="Count" />
-    
-    <button type="submit" class="btn btn-primary my-2">ยกเลิก</button>
-</form>
 <form method="post" asp-controller="Buyer" asp-action="YourOrder">
+    menu: <input type="text" name="menu" />
+    count: <input type="text" name="count" />
     <button type="submit" class="btn btn-primary my-2">ฝากซื้อ</button>
 </form>
+
+<form method="post" asp-controller="Buyer" asp-action="PostOrder">
+    <button type="submit" class="btn btn-primary my-2">ยกเลิก</button>
+</form>
+
