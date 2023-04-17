@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form method="post" asp-controller="Auth" asp-action="Login">
+    username: <input type="text" name="username" />
+    password: <input type="password" name="password" />
+    <button type="submit" class="btn btn-primary my-2">login</button>
+</form>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+    var profile = ViewData["profile"] as WebApp_Project.Models.User;
+}
+
+<h1>Profile</h1>
+
+<p>First Name : @profile.FirstName</p>
+<p>Last Name : @profile.LastName</p>
+<p>User Name : @profile.UserName</p>
+<p>Email : @profile.Email</p>
+<hr>

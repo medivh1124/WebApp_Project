@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WebApp_Project.Data;
 using WebApp_Project.Models;
+using WebApp_Project.Models.Forms;
 
 namespace WebApp_Project.Controllers
 {
@@ -22,6 +26,7 @@ namespace WebApp_Project.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateUser(User obj)
@@ -29,8 +34,20 @@ namespace WebApp_Project.Controllers
             _db.Users.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-            //return View(obj);
-            /* return View();*/
+        }
+
+        /*public IActionResult Profile()
+        {
+            IEnumerable<User> allUser = _db.Users;
+            return View(allUser);
+        }*/
+
+        public IActionResult Profile()
+        {
+            var currentUser = HttpContext.Session.GetString("_CurrentUser");
+            var profile = _db.Users.Where(user => user.UserName == currentUser).FirstOrDefault();
+            ViewData["profile"] = profile;
+            return View();
         }
     }
 }

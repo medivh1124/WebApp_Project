@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@if(Context.Session.GetString("_CurrentUser") != null)
+{
+    <text>Welcome @Context.Session.GetString("_CurrentUser") .</text>
+}
+else
+{
+    <text>Login Failed.</text>
+}

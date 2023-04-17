@@ -11,5 +11,7 @@ namespace WebApp_Project.Data
         }
         /* เป็นตัวแทนของตาราง student ที่อยู่ในฐานข้อมูล*/
         public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+    
     }
 }
