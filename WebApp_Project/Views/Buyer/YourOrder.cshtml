@@ -1,0 +1,15 @@
+﻿@model List<WebApp_Project.Models.Details.OrderDetail>;
+@{
+    ViewData["Title"] = "YourOrder";
+}
+
+<h1>Your Order</h1>
+
+@foreach (var order in Model)
+{
+
+        <p>Place to get food : @order.Place</p>
+        <p>Restaurant : @order.Restaurant</p>
+        <p>Rider Name : @order.Rider.FirstName</p>
+        <hr />
+}

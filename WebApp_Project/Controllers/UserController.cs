@@ -49,5 +49,8 @@ namespace WebApp_Project.Controllers
             ViewData["profile"] = profile;
             return View();
         }
-    }
+        public IActionResult Sign_in() 
+        { 
+            return View("~/Views/Home/Index.cshtml"); }
+        }
 }
