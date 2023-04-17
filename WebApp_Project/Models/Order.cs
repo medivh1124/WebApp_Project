@@ -9,6 +9,8 @@ namespace WebApp_Project.Models
 
         public int? RiderId { get; set; }
 
+        public int? BuyerId { get; set; }
+
         [Required]
         public string Place { get; set; }
 

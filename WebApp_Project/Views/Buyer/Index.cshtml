@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form method="post" asp-controller="Rider" asp-action="PostOrder">
+    Menu: <input type="text" name="Menu" />
+    Count: <input type="text" name="Count" />
+    <button type="submit" class="btn btn-primary my-2">ฝากซื้อ</button>
+    <button type="submit" class="btn btn-primary my-2">ยกเลิก</button>
+    <hr />
+</form>

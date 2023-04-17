@@ -6,12 +6,13 @@
 <h1>PostOrder</h1>
 @foreach(var order in Model)
 {
-    <p>Place to get food : @order.Place</p>
-    <p>Restaurant : @order.Restaurant</p>
-    <p>Rider Name : @order.Rider.FirstName</p>
-    <hr/>
+
+    <form method="post" asp-controller="Buyer" asp-action="Index">
+        <p>Place to get food : @order.Place</p>
+        <p>Restaurant : @order.Restaurant</p>
+        <p>Rider Name : @order.Rider.FirstName</p>
+        <button type="submit" class="btn btn-primary my-2">สั่งอาหาร</button>
+        <hr />
+    </form>
 }
-<form method="get" asp-controller="Rider" asp-action="BuyerOrder">
-    <button type="submit" class="btn btn-primary my-2">สั่งอาหาร</button>
-</form>
 

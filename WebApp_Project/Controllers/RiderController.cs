@@ -23,10 +23,18 @@ namespace WebApp_Project.Controllers
         [HttpPost]
         public IActionResult Index(Order obj)
         {
-            obj.RiderId = HttpContext.Session.GetInt32("_CurrentUserId");
-            _db.Orders.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("PostOrder");
+            var riderId = HttpContext.Session.GetInt32("_CurrentUserId");
+            if (riderId == null)
+            {
+                return Content("Please login");
+            }
+            else
+            {
+                obj.RiderId = riderId;
+                _db.Orders.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("PostOrder");
+            }
         }
 
         public IActionResult PostOrder() 
@@ -38,16 +46,11 @@ namespace WebApp_Project.Controllers
                 var rider = _db.Users.Find(order.RiderId);
                 var detail = new OrderDetail(order, rider!);
                 details.Add(detail);
-                /*RedirectToAction("BuyerOrder");*/
             }
             return View(details);
         }
 
-        public IActionResult BuyerOrder()
-        {
-            return View();
-        }
 
- 
+
     }
 }
