@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp_Project.Data;
+using WebApp_Project.Filters;
 using WebApp_Project.Models;
 using WebApp_Project.Models.Details;
 
@@ -15,43 +16,29 @@ namespace WebApp_Project.Controllers
             _db = db;
         }
 
+        [AuthorizeSession]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [AuthorizeSession]
         public IActionResult Index(Order obj)
         {
             var riderId = HttpContext.Session.GetInt32("_CurrentUserId");
-            if (riderId == null)
-            {
-                return Content("Please login");
-            }
-            else
-            {
-                obj.RiderId = riderId;
-                _db.Orders.Add(obj);
-                _db.SaveChanges();
-                return RedirectToAction("PostOrder");
-                /*  return View();*/
-            }
+            obj.RiderId = riderId;
+            _db.Orders.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("PostOrder");
         }
 
- /*       public IActionResult PostOrder()
+        [AuthorizeSession]
+        public IActionResult PostOrder()
         {
-            List<OrderDetail> details = new();
-            List<Order> allOrder = _db.Orders.ToList();
-            foreach (Order order in allOrder)
-            {
-                var rider = _db.Users.Find(order.RiderId);
-                var detail = new OrderDetail(order, rider!);
-                details.Add(detail);
-            }
-            return View(details);
+            var riderId = HttpContext.Session.GetInt32("_CurrentUserId");
+            List<Order> allOrder = _db.Orders.Where(order => order.RiderId == riderId).ToList();
+            return View(allOrder);
         }
-*/
-
-
     }
 }

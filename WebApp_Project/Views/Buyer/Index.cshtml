@@ -7,6 +7,7 @@
 <form method="post" asp-controller="Buyer" asp-action="YourOrder">
     menu: <input type="text" name="menu" />
     count: <input type="text" name="count" />
+    <input type="hidden" name="id" value="@ViewData["OrderId"]" />
     <button type="submit" class="btn btn-primary my-2">ฝากซื้อ</button>
 </form>
 

@@ -7,7 +7,7 @@
 @foreach (var order in Model)
 {
 
-    <form method="post" asp-controller="Buyer" asp-action="Index">
+    <form method="get" asp-controller="Buyer" asp-action="Detail" asp-route-id="@order.Id">
         <p>Place to get food : @order.Place</p>
         <p>Restaurant : @order.Restaurant</p>
         <p>Rider Name : @order.Rider.FirstName</p>

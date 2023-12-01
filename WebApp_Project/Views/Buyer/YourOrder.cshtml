@@ -7,9 +7,17 @@
 
 @foreach (var order in Model)
 {
-
-        <p>Place to get food : @order.Place</p>
-        <p>Restaurant : @order.Restaurant</p>
+    if(order.Menu is not null && order.Price is not null)
+    {
         <p>Rider Name : @order.Rider.FirstName</p>
+        <p>Place : @order.Place</p>
+        <p>Restaurant : @order.Restaurant</p>
+
+        <p>Buyer : @order.Buyer.FirstName</p>
+        <p>Menu Name: @order.Menu</p>
+        <p>Count : @order.Price</p>
+        
         <hr />
+    }
+    
 }

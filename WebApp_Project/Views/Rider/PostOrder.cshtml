@@ -1,0 +1,13 @@
+﻿@model List<WebApp_Project.Models.Order>;
+@{
+    ViewData["Title"] = "PostOrder";
+}
+
+<h1>PostOrder</h1>
+@foreach (var order in Model)
+{
+    <p>Place to get food : @order.Place</p>
+    <p>Restaurant : @order.Restaurant</p>
+    <hr />
+}
+
